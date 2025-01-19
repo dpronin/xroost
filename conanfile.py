@@ -17,8 +17,6 @@ class xroostRecipe(ConanFile):
 
     generators = "CMakeToolchain", "CMakeDeps"
 
-    # def requirements(self):
-
     def build_requirements(self):
         self.tool_requires("cmake/[^3.23]")
 
@@ -33,6 +31,3 @@ class xroostRecipe(ConanFile):
     def package(self):
         cmake = CMake(self)
         cmake.install()
-
-    def package_info(self):
-        self.cpp_info.libs = ["xroost"]
