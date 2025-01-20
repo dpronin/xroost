@@ -35,6 +35,7 @@ target_sources(${PROJECT_NAME} INTERFACE
         include/xroost/algo/sorting/quick_sort_r.hpp
         include/xroost/algo/sorting/selection_sort.hpp
         include/xroost/algo/sorting/sort_all.hpp
+        include/xroost/crc/crc_optimal.hpp
         include/xroost/integer.hpp
         include/xroost/lockless/detail.hpp
         include/xroost/lockless/spmcqueue.hpp
