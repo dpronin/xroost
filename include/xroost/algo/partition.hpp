@@ -1,7 +1,7 @@
 #include <concepts>
 #include <ranges>
 
-namespace yoo::algo {
+namespace xroost::algo {
 
 template <std::permutable Iterator, std::sentinel_for<Iterator> Sentinel,
           typename Proj = std::identity,
@@ -30,4 +30,4 @@ std::ranges::iterator_t<Range> partition(Range &&range, Pred pred = {},
                    proj);
 }
 
-} // namespace yoo::algo
+} // namespace xroost::algo

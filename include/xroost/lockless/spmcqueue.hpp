@@ -10,18 +10,9 @@
 #include <type_traits>
 #include <vector>
 
-namespace detail {
+#include "detail.hpp"
 
-#ifdef __cpp_lib_hardware_interference_size
-constexpr size_t hardware_destructive_interference_size =
-    std::hardware_destructive_interference_size;
-#else
-constexpr size_t hardware_destructive_interference_size{64};
-#endif
-
-constexpr size_t is_power_of_2(size_t n) { return 0 == (n & (n - 1)); }
-
-} // namespace detail
+namespace xroost::lockless {
 
 template <typename T, size_t N>
   requires(std::default_initializable<T> && std::copy_constructible<T>)
@@ -140,3 +131,5 @@ private:
       std::atomic_uint32_t tail_;
   alignas(detail::hardware_destructive_interference_size) std::vector<T> items_;
 };
+
+} // namespace xroost::lockless

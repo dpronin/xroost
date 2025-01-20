@@ -28,6 +28,7 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_sources(${PROJECT_NAME} INTERFACE
     PUBLIC FILE_SET HEADERS BASE_DIRS include FILES
         include/xroost/algo/partition.hpp
+        include/xroost/lockless/detail.hpp
         include/xroost/lockless/spmcqueue.hpp
         include/xroost/lockless/spscqueue.hpp
 )
