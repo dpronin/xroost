@@ -8,6 +8,10 @@
 #include <sstream>
 #include <vector>
 
+namespace xroost {
+
+namespace detail {
+
 template <std::ranges::random_access_range Range,
           typename Comp = std::ranges::less, typename Proj = std::identity>
   requires std::sortable<std::ranges::iterator_t<Range>, Comp, Proj>
@@ -78,12 +82,20 @@ sort_heap(Range &&rng, Comp comp = {}, Proj proj = {}) {
   return std::ranges::end(rng);
 }
 
+} // namespace detail
+
+namespace algo {
+
 template <std::ranges::random_access_range Range,
           typename Comp = std::ranges::less, typename Proj = std::identity>
   requires std::sortable<std::ranges::iterator_t<Range>, Comp, Proj>
 constexpr std::ranges::borrowed_iterator_t<Range>
 heap_sort(Range &&rng, Comp comp = {}, Proj proj = {}) {
-  make_heap(rng, comp, proj);
-  sort_heap(rng, comp, proj);
+  detail::make_heap(rng, comp, proj);
+  detail::sort_heap(rng, comp, proj);
   return std::ranges::end(rng);
 }
+
+} // namespace algo
+
+} // namespace xroost

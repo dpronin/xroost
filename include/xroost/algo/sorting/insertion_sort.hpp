@@ -5,7 +5,8 @@
 #include <iostream>
 #include <iterator>
 #include <ranges>
-#include <vector>
+
+namespace xroost::algo {
 
 template <std::ranges::random_access_range Range,
           typename Comp = std::ranges::less, typename Proj = std::identity>
@@ -20,3 +21,5 @@ insertion_sort(Range &&rng, Comp comp = {}, Proj proj = {}) {
                 i, i + 1);
   return std::ranges::end(rng);
 }
+
+} // namespace xroost::algo

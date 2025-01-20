@@ -4,7 +4,8 @@
 #include <functional>
 #include <iterator>
 #include <ranges>
-#include <vector>
+
+namespace xroost::algo {
 
 template <std::ranges::random_access_range Range,
           typename Comp = std::ranges::less, typename Proj = std::identity>
@@ -33,3 +34,5 @@ quick_sort_r(Range &&rng, Comp comp = {}, Proj proj = {}) {
   }
   return std::ranges::end(rng);
 }
+
+} // namespace xroost::algo
