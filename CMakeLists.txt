@@ -28,6 +28,13 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_sources(${PROJECT_NAME} INTERFACE
     PUBLIC FILE_SET HEADERS BASE_DIRS include FILES
         include/xroost/algo/partition.hpp
+        include/xroost/algo/sorting/bubble_sort.hpp
+        include/xroost/algo/sorting/heap_sort.hpp
+        include/xroost/algo/sorting/insertion_sort.hpp
+        include/xroost/algo/sorting/quick_sort.hpp
+        include/xroost/algo/sorting/quick_sort_r.hpp
+        include/xroost/algo/sorting/selection_sort.hpp
+        include/xroost/algo/sorting/sort_all.hpp
         include/xroost/lockless/detail.hpp
         include/xroost/lockless/spmcqueue.hpp
         include/xroost/lockless/spscqueue.hpp
