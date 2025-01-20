@@ -8,6 +8,7 @@
 #include <concepts>
 #include <new>
 #include <optional>
+#include <type_traits>
 #include <vector>
 
 #include "detail.hpp"
