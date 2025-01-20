@@ -31,6 +31,7 @@ target_sources(${PROJECT_NAME} INTERFACE
         include/xroost/lockless/detail.hpp
         include/xroost/lockless/spmcqueue.hpp
         include/xroost/lockless/spscqueue.hpp
+        include/xroost/utility/aligned_storage.hpp
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE include)
