@@ -4,7 +4,7 @@ from conan.tools.cmake import CMake, cmake_layout
 
 class xroostRecipe(ConanFile):
     name = "xroost"
-    version = "0.6.0"
+    version = "0.7.0"
 
     license = "New BSD License"
     author = "Denis Pronin"
