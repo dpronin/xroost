@@ -29,6 +29,7 @@ target_sources(${PROJECT_NAME} INTERFACE
     PUBLIC FILE_SET HEADERS BASE_DIRS include FILES
         include/xroost/algo/partition.hpp
         include/xroost/algo/sorting/bubble_sort.hpp
+        include/xroost/algo/sorting/counting_sort.hpp
         include/xroost/algo/sorting/heap_sort.hpp
         include/xroost/algo/sorting/insertion_sort.hpp
         include/xroost/algo/sorting/quick_sort.hpp

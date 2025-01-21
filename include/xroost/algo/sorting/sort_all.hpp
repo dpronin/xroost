@@ -1,6 +1,7 @@
 #pragma once
 
 #include "bubble_sort.hpp"
+#include "counting_sort.hpp"
 #include "heap_sort.hpp"
 #include "insertion_sort.hpp"
 #include "quick_sort.hpp"
