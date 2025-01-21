@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 
-project(xroost VERSION 0.8.0 LANGUAGES CXX)
+project(xroost VERSION 0.9.0 LANGUAGES CXX)
 
 option(ENABLE_DEB "Enable 'package' target to build DEB packages from artifacts" OFF)
 
