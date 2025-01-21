@@ -14,9 +14,14 @@ template <typename T, typename Deleter = std::default_delete<T>>
 class unique_ptr {
 public:
   unique_ptr() = default;
-  explicit unique_ptr(T *p, Deleter d = Deleter()) noexcept(
+  explicit unique_ptr(T *p) noexcept(
       std::is_nothrow_move_assignable_v<Deleter> ||
       std::is_nothrow_copy_assignable_v<Deleter>)
+      : p_(p) {}
+
+  unique_ptr(T *p,
+             Deleter d) noexcept(std::is_nothrow_move_assignable_v<Deleter> ||
+                                 std::is_nothrow_copy_assignable_v<Deleter>)
       : p_(p), d_(std::move_if_noexcept(d)) {}
 
   ~unique_ptr() noexcept(
@@ -44,16 +49,17 @@ public:
       *this = std::move(other);
   }
 
+  explicit operator bool() const { return p_; }
+
   T *operator->() const { return p_; }
   T &operator*() const { return *p_; }
 
   T *get() const { return p_; }
 
-  void reset() {
-    if (p_) {
+  void reset(T *p) {
+    if (p_)
       d_(p_);
-      p_ = nullptr;
-    }
+    p_ = p;
   }
 
 private:
