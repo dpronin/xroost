@@ -227,16 +227,14 @@ private:
                                                  value_type const &value) {
     std::pair<std::shared_ptr<node>, bool> result;
     if (!p_node) {
-      result = {
-          {
+      p_node = {
               new (allocator_.allocate(1)) node{value},
               [this](node *p_node) {
                 std::destroy_at(p_node);
                 allocator_.deallocate(p_node, 1);
               },
-          },
-          true,
-      };
+          };
+      result = {p_node, true};
     } else if (value == p_node->value()) {
       result = std::make_pair(p_node, false);
     } else if (value < p_node->value()) {
@@ -259,4 +257,5 @@ private:
   std::unique_ptr<IPrinterStrategy> p_printer_;
   std::allocator_traits<allocator_type>::template rebind_alloc<node> allocator_;
 };
+
 } // namespace xroost
