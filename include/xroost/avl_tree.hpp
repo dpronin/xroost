@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstddef>
 
 #include <sys/types.h>

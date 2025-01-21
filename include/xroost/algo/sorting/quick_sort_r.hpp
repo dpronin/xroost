@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstddef>
 
 #include <algorithm>
@@ -11,7 +13,7 @@
 
 namespace xroost::algo {
 
-template <std::ranges::random_access_iterator I, std::sentinel_for<I> S,
+template <std::random_access_iterator I, std::sentinel_for<I> S,
           typename Comp = std::ranges::less, typename Proj = std::identity>
   requires std::sortable<I, Comp, Proj>
 constexpr void quick_sort_r(I first, S last, Comp comp = {}, Proj proj = {}) {
@@ -22,15 +24,16 @@ constexpr void quick_sort_r(I first, S last, Comp comp = {}, Proj proj = {}) {
     // partition the range [first + 1, last) with respect to the first item as
     // the pivot
     auto const mid =
-        partition(first + 1, last,
-                  [=](auto const &v) { return comp(proj(v), proj(*first)); }) -
+        partition(
+            first + 1, last,
+            [=](auto const &v) { return comp(v, proj(*first)); }, proj) -
         1;
     // swap the first item for the last item that in the first part of
     // partitioned range upon this operation the range is devided into [first,
     // mid - 1] < mid <= [mid + 1, last)
     std::iter_swap(first, mid);
-    quick_sort_r(std::ranges::subrange{first, mid}, comp, proj);
-    quick_sort_r(std::ranges::subrange{mid + 1, last}, comp, proj);
+    quick_sort_r(first, mid, comp, proj);
+    quick_sort_r(mid + 1, last, comp, proj);
   }
 }
 

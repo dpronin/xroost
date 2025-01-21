@@ -1,12 +1,15 @@
+#pragma once
+
 #include <concepts>
 #include <ranges>
 
 namespace xroost::algo {
 
-template <std::permutable Iterator, std::sentinel_for<Iterator> Sentinel,
+template <std::permutable I, std::sentinel_for<I> S,
           typename Proj = std::identity,
-          std::indirect_unary_predicate<std::projected<Iterator, Proj>> Pred>
-Iterator partition(Iterator first, Sentinel last, Pred pred, Proj proj = {}) {
+          std::indirect_unary_predicate<std::projected<I, Proj>> Pred =
+              std::ranges::less>
+I partition(I first, S last, Pred pred = {}, Proj proj = {}) {
   first =
       std::ranges::find_if_not(std::ranges::subrange{first, last}, pred, proj);
   if (first == last)
@@ -26,8 +29,8 @@ template <std::ranges::forward_range Range, typename Proj = std::identity,
               Pred = std::ranges::less>
 std::ranges::iterator_t<Range> partition(Range &&range, Pred pred = {},
                                          Proj proj = {}) {
-  return partition(std::ranges::begin(range), std::ranges::end(range), pred,
-                   proj);
+  return partition(std::ranges::begin(range), std::ranges::end(range),
+                   std::move(pred), std::move(proj));
 }
 
 } // namespace xroost::algo
