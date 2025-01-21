@@ -1,7 +1,9 @@
 #pragma once
 
 #include <concepts>
+#include <iterator>
 #include <ranges>
+#include <utility>
 
 namespace xroost::algo {
 
