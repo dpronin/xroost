@@ -4,7 +4,6 @@
 
 #include <algorithm>
 #include <functional>
-#include <iostream>
 #include <iterator>
 #include <ranges>
 
@@ -24,8 +23,7 @@ constexpr void insertion_sort(I first, S last, Comp comp = {}, Proj proj = {}) {
 template <std::ranges::random_access_range Range,
           typename Comp = std::ranges::less, typename Proj = std::identity>
   requires std::sortable<std::ranges::iterator_t<Range>, Comp, Proj>
-constexpr std::ranges::borrowed_iterator_t<Range>
-insertion_sort(Range &&rng, Comp comp = {}, Proj proj = {}) {
+constexpr void insertion_sort(Range &&rng, Comp comp = {}, Proj proj = {}) {
   insertion_sort(std::ranges::begin(rng), std::ranges::end(rng),
                  std::move(comp), std::move(proj));
 }
