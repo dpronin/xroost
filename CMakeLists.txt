@@ -28,6 +28,9 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_sources(${PROJECT_NAME} INTERFACE
     PUBLIC FILE_SET HEADERS BASE_DIRS include FILES
         include/xroost/algo/partition.hpp
+        include/xroost/algo/binary_search.hpp
+        include/xroost/algo/lower_bound.hpp
+        include/xroost/algo/upper_bound.hpp
         include/xroost/algo/sorting/bubble_sort.hpp
         include/xroost/algo/sorting/counting_sort.hpp
         include/xroost/algo/sorting/heap_sort.hpp
