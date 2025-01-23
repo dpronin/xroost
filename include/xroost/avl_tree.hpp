@@ -21,8 +21,6 @@ private:
   using allocator_type = Allocator;
 
   class node final {
-    friend class avl_tree<value_type, allocator_type>;
-
   public:
     explicit node(value_type &&value) : value_(std::move_if_noexcept(value)) {}
     explicit node(value_type const &value) : value_(value) {}
@@ -223,10 +221,9 @@ private:
   void balance_(
       memory::unique_ptr<node, std::function<void(struct node *)>> &p_node) {
     p_node->fix_height();
-    auto const bfactor{p_node->bfactor()};
     // right subtree is heavier than the left by 2, required to rotate big to
     // the right
-    if (-2 == bfactor) {
+    if (auto const bfactor{p_node->bfactor()}; -2 == bfactor) {
       // left subtree of the subtree is heavier than the right, required to
       // rotate small to the right
       if (p_node->p_right_->bfactor() > 0)
