@@ -11,6 +11,8 @@ class xroostRecipe(ConanFile):
     url = "https://github.com/dpronin/xroost"
     description = "A library with common oriented algorithms"
 
+    package_type = "header-library"
+
     settings = "os", "compiler", "build_type", "arch"
 
     exports_sources = "CMakeLists.txt", "include/*", "LICENSE"
